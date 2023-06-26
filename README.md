@@ -24,9 +24,9 @@ So, here are the instructions to get this up and running (it's not a lot, I prom
 5. This will now show as the top result in the Actions list. Select it, and then select the 'Edit Action...' button
   - You will now see the Reascript Development Environment and the lua code for the script
 
-6. Find the line that says (local spreadsheetPath = "PASTE YOUR FILE PATH HERE - KEEP QUOTATIONS") and replace the TEXT IN CAPITALS with the file path of the .csv file and make sure to keep the quotation marks. This should be Line 14 (the environment doesn't have a line counter)
+6. Find the line that says (local spreadsheetPath = "PASTE YOUR FILE PATH HERE - KEEP QUOTATIONS") and replace the TEXT IN CAPITALS with the file path of the .csv file and make sure to keep the quotation marks. This should be Line 2.
 
-7. Once this has been pasted in, 'save' the file (CTRL+S on Windows, CMND+S on Mac) and this will execute the script
+7. Once this has been pasted in, 'save' the file (CTRL+S on Windows, CMND+S on Mac) and this will execute the script. Please note that Windows Machines can be tempermental about backslashes and forwardslashes.
   - You should see the dialogue box appear with a random prompt from the spreadsheet!
 
 8. Close the dialogue box and the Reascript Development Environment
