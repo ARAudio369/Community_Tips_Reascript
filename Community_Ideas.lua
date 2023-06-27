@@ -1,36 +1,44 @@
 -- Set the path to your spreadsheet file
-local spreadsheetPath = "PASTE YOUR FILE PATH HERE - KEEP QUOTATIONS"
+local spreadsheetPath = "/Users/ari29/Downloads/community_tips_reascript_2.0-main/Community_Tips.csv"
 
 function readSpreadsheet(filename)
-    local file = io.open(filename, "r") 
+    local file = io.open(filename, "r")
     if file then
         local data = {}
         for line in file:lines() do
-            local cells = {} 
+            local cells = {}
             local cell = ""
-            local inQuotes = false 
+            local inQuotes = false
             for i = 1, #line do
                 local char = line:sub(i, i)
                 if char == "\"" then
-                    inQuotes = not inQuotes 
+                    inQuotes = not inQuotes
                 elseif char == "," and not inQuotes then
-                    table.insert(cells, cell) 
-                    cell = "" 
+                    table.insert(cells, cell)
+                    cell = ""
                 else
-                    cell = cell .. char 
+                    cell = cell .. char
                 end
             end
-            table.insert(cells, cell) 
-            table.insert(data, cells) 
+            table.insert(cells, cell)
+            table.insert(data, cells)
         end
-        file:close() 
+        file:close()
         return data
     end
     return nil
 end
 
 function clearConsole()
-    reaper.ShowConsoleMsg("") 
+    reaper.ShowConsoleMsg("")
+end
+
+function trim(s)
+    return (s:gsub("^%s*(.-)%s*$", "%1"))
+end
+
+function decodeText(text)
+    return text:gsub("Õ", "'"):gsub("É", "...")
 end
 
 function getRandomRow()
@@ -40,8 +48,14 @@ end
 function displayCells(data, row)
     local rowCells = data[row]
     if rowCells then
-        local output = table.concat(rowCells, "\n\n")
-        output = output:match("^%s*(.-)%s*$") 
+        local output = ""
+        for i, cell in ipairs(rowCells) do
+            if i > 1 then
+                output = output .. "\n\n"
+            end
+            output = output .. trim(decodeText(cell))
+        end
+        output = trim(output) -- Trim whitespace from output
         reaper.ShowConsoleMsg(output .. "\n")
     else
         reaper.ShowConsoleMsg("Selected row does not exist.\n")
@@ -51,9 +65,9 @@ end
 local function showMessageBox(message, questionMark)
     local buttonFlags = 1
     if questionMark then
-        buttonFlags = reaper.ShowMessageBox(message, " ", 3)
+        buttonFlags = reaper.ShowMessageBox(decodeText(message), " ", 3)
     else
-        buttonFlags = reaper.ShowMessageBox(message, " ", 1)
+        buttonFlags = reaper.ShowMessageBox(decodeText(message), " ", 1)
     end
     if buttonFlags == 6 then
         return "yes"
@@ -78,9 +92,10 @@ function shouldCloseMessageBox(lineNum, columnNum)
     end
 end
 
+-- Code for reading the spreadsheet file
 local data = readSpreadsheet(spreadsheetPath)
 if data then
-    
+    -- Code for clearing the console
     clearConsole()
 
     local row = getRandomRow()
@@ -91,7 +106,6 @@ if data then
     executionCount = executionCount + 1
 
     if executionCount >= 50 then
-
         local file = io.open(spreadsheetPath, "r")
         if file then
             local lines = {}
@@ -115,34 +129,33 @@ if data then
                         local questionMark = currentCellValue:sub(-1) == "?"
                         local result = showMessageBox(currentCellValue, questionMark)
                         if result == "yes" then
-                            lineNum = lineNum + 1 
+                            lineNum = lineNum + 1
                         elseif result == "no" then
-                            columnNum = columnNum + 1 
+                            columnNum = columnNum + 1
                         elseif result == "ok" then
-                           
                             if shouldCloseMessageBox(lineNum, columnNum) then
                                 break
                             else
                                 if lineNum == 6682 and columnNum == 1 then
-                                    lineNum = 6681 
-                                    columnNum = 2 
+                                    lineNum = 6681
+                                    columnNum = 2
                                 elseif lineNum == 6687 and columnNum == 2 then
-                                    lineNum = 6683 
-                                    columnNum = 3 
+                                    lineNum = 6683
+                                    columnNum = 3
                                 elseif lineNum == 6691 and columnNum == 3 then
-                                    lineNum = 6688 
-                                    columnNum = 4 
+                                    lineNum = 6688
+                                    columnNum = 4
                                 elseif lineNum == 6692 and columnNum == 4 then
-                                    lineNum = 6696 
-                                    columnNum = 1 
+                                    lineNum = 6696
+                                    columnNum = 1
                                 elseif lineNum == 6704 and columnNum == 1 then
-                                    lineNum = 6708 
-                                    columnNum = 2 
+                                    lineNum = 6708
+                                    columnNum = 2
                                 elseif lineNum == 6708 and columnNum == 1 then
-                                    lineNum = 6704 
-                                    columnNum = 2 
+                                    lineNum = 6704
+                                    columnNum = 2
                                 else
-                                    lineNum = lineNum + 1 
+                                    lineNum = lineNum + 1
                                 end
                             end
                         elseif result == "cancel" then
@@ -150,22 +163,20 @@ if data then
                         end
                     else
                         reaper.ShowMessageBox("Empty cell detected.", "ReaScript", 0)
-                        lineNum = lineNum + 1 
+                        lineNum = lineNum + 1
                     end
                 end
             end
 
-            
+            -- Code for clearing the console
             clearConsole()
             reaper.SetExtState("Script", "ExecutionCount", "0", true)
         else
             reaper.ShowMessageBox("Failed to open the spreadsheet file.", "ReaScript", 0)
         end
     else
-    
         reaper.SetExtState("Script", "ExecutionCount", tostring(executionCount), true)
     end
 else
     reaper.ShowConsoleMsg("Failed to open the spreadsheet file.\n")
 end
-
