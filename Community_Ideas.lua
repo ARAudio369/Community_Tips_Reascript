@@ -1,5 +1,5 @@
 -- Set the path to your spreadsheet file
-local spreadsheetPath = "/Users/ari29/Downloads/community_tips_reascript_2.0-main/Community_Tips.csv"
+local spreadsheetPath = "PASTE YOURN FILE PATH HERE - KEEP QUOTATIONS"
 
 function readSpreadsheet(filename)
     local file = io.open(filename, "r")
