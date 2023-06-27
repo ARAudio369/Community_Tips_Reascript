@@ -6669,7 +6669,7 @@ You shake off the haze. The barkeep casting shadow over you.,,,,
 Sluggishly you make your way to the door. The locals stare.,,,,
 Uncertainty painted across their faces,,,,
 You leave. The door bolts behind you.,,,,
-É,,,,
+....,,,,
 Outside.,,,,
 Midnight.,,,,
 All feels abandoned aside from sparse lamplight flickering in the rainfall,,,,
@@ -6679,7 +6679,7 @@ Any hum you were used to begins to dull.,,,,
 You cross buildings as you walk in the cobbled street. There is no decoration.,,,,
 A sign is placed by the door of another pub.,,,,
 Read sign?,You keep walking. Light is dissipating.,/,/,/
-'Closed - Whiskey reserve gone. 07/11/65 Na d“ochuimhnich',You approach a person. They're waiting.,,/,/
+'Closed - Whiskey reserve gone. 07/11/65 Na dÂ“ochuimhnich',You approach a person. They're waiting.,,/,/
 /,Speak to the person?,You continue to walk East.,There is one last sign illuminated by lamplight,!
 /,'Cast into the dark too?',There is one last sign illuminated by lamplight,/,?
 /,'Looks like you're in luck',You make your way closer. Footsteps become clearer,/,/
