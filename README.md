@@ -4,7 +4,7 @@ A reascript used to draw creative tips from a spreadsheet that will be stored wi
 
 Hi, thank you for downloading this Reascript! 
 
-The idea behind this was to create something light and 'fun' that wouldn't require a mass install of other supporting environments. So, this script has been created using LUA, rather than Python or C-based languages. Also, the spreadsheet with the tips & tricks is contained within this repository and will copy to your local machine. Should you like, you can edit this to add your own tips and it'll only reflect on your copy. I researched keeping this in the cloud to keep refreshes exciting, but this would require the user (you!) to install further modules and so on.
+The idea behind this was to create something light and 'fun' that wouldn't require a mass install of other supporting environments. So, this script has been created using LUA, rather than Python or C-based languages. Also, the spreadsheet with the tips & tricks is contained within this repository/ZIP and will copy to your local machine. I'd advise against adding to or editing the sheet unless you fancy diving into the LUA script too. I researched keeping this in the cloud to keep refreshes exciting, but this would require the user (you!) to install further modules and so on.
 
 
 ========================================================================================================================================
@@ -39,4 +39,4 @@ And that should be you go to go!
 
 Thank you again for checking this out. Hopefully it'll help in moments or creative block.
 
-Aaron (@ARAudio_)
+Aaron Richards - (@ARAudio_)
